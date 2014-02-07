@@ -140,7 +140,7 @@ nets = dict(
         BOOTSTRAP_ADDRS='forre.st vps.forre.st stella.dnsalias.com'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-meow',
         VERSION_CHECK=lambda v: True,
-        VERSION_WARNING=lambda v: 'Upgrade KittehCoin to >=0.8.6.1!' if v < 80601 else None,
+        VERSION_WARNING=lambda v: 'Upgrade KittehCoin to >=0.8.6.1!' if v < 60401 else None,
     ),
     kittehcoin_testnet=math.Object(
         PARENT=networks.nets['kittehcoin_testnet'],

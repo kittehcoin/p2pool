@@ -123,6 +123,43 @@ nets = dict(
         VERSION_WARNING=lambda v: 'Upgrade Terracoin to >= 0.8.0.1!' if v < 80001 else None,
     ),
 
+    kittehcoin=math.Object(
+        PARENT=networks.nets['kittehcoin'],
+        SHARE_PERIOD=15, # seconds
+        CHAIN_LENGTH=24*60*60//10, # shares
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares
+        TARGET_LOOKBEHIND=500, # shares
+        SPREAD=3, # blocks
+        IDENTIFIER='50d1b1bf0321de06'.decode('hex'),
+        PREFIX='32cbbbe9ba3cca6a'.decode('hex'),
+        P2P_PORT=9338,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=9337,
+        BOOTSTRAP_ADDRS='forre.st vps.forre.st stella.dnsalias.com'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-meow',
+        VERSION_CHECK=lambda v: True,
+        VERSION_WARNING=lambda v: 'Upgrade KittehCoin to >=0.8.6.1!' if v < 80601 else None,
+    ),
+    kittehcoin_testnet=math.Object(
+        PARENT=networks.nets['kittehcoin_testnet'],
+        SHARE_PERIOD=4, # seconds
+        CHAIN_LENGTH=20*60//3, # shares
+        REAL_CHAIN_LENGTH=20*60//3, # shares
+        TARGET_LOOKBEHIND=200, # shares
+        SPREAD=3, # blocks
+        IDENTIFIER='bea8b1d4d15a816a'.decode('hex'),
+        PREFIX='e69cab279f275bb9'.decode('hex'),
+        P2P_PORT=19338,
+        MIN_TARGET=2**256//50 - 1,
+        MAX_TARGET=2**256//50 - 1,
+        PERSIST=False,
+        WORKER_PORT=19337,
+        BOOTSTRAP_ADDRS='forre.st vps.forre.st'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-tmeow',
+        VERSION_CHECK=lambda v: True,
+    ),
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name

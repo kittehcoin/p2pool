@@ -188,6 +188,48 @@ nets = dict(
         DUST_THRESHOLD=1e8,
     ),
 
+    kittehcoin=math.Object(
+        P2P_PREFIX='c0c0c0c0'.decode('hex'),
+        P2P_PORT=22566,
+        ADDRESS_VERSION=45,
+        RPC_PORT=22565,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'kittehcoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 50000*100000000 >> (height + 1)//200000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s
+        SYMBOL='MEOW',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'KittehCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/KittehCoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.kittehcoin'), 'kittehcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/address/',
+        TX_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=1e8,
+    ),
+    kittehcoin_testnet=math.Object(
+        P2P_PREFIX='cfcfcfcf'.decode('hex'),
+        P2P_PORT=44566,
+        ADDRESS_VERSION=108,
+        RPC_PORT=44566,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'kittehcoinaddress' in (yield bitcoind.rpc_help()) and
+            (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 50000*100000000 >> (height + 1)//200000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s
+        SYMBOL='tMEOW',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'KittehCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/KittehCoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.kittehcoin'), 'kittehcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/address/',
+        TX_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=1e8,
+    ),
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name

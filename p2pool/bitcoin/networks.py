@@ -199,7 +199,7 @@ nets = dict(
         )),
         SUBSIDY_FUNC=lambda height: 50000*100000000 >> (height + 1)//200000,
         POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=60, # s
+        BLOCK_PERIOD=30, # s
         SYMBOL='MEOW',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'KittehCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/KittehCoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.kittehcoin'), 'kittehcoin.conf'),
         BLOCK_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/block/',
@@ -220,7 +220,7 @@ nets = dict(
         )),
         SUBSIDY_FUNC=lambda height: 50000*100000000 >> (height + 1)//200000,
         POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=60, # s
+        BLOCK_PERIOD=30, # s
         SYMBOL='tMEOW',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'KittehCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/KittehCoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.kittehcoin'), 'kittehcoin.conf'),
         BLOCK_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/block/',

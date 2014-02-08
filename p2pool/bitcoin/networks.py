@@ -206,14 +206,14 @@ nets = dict(
         ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/address/',
         TX_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-        DUMB_SCRYPT_DIFF=2**16,
+        DUMB_SCRYPT_DIFF=1,
         DUST_THRESHOLD=1e8,
     ),
     kittehcoin_testnet=math.Object(
         P2P_PREFIX='cfcfcfcf'.decode('hex'),
         P2P_PORT=44566,
         ADDRESS_VERSION=108,
-        RPC_PORT=44566,
+        RPC_PORT=44565,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'kittehcoinaddress' in (yield bitcoind.rpc_help()) and
             (yield bitcoind.rpc_getinfo())['testnet']
@@ -227,7 +227,7 @@ nets = dict(
         ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/address/',
         TX_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256 - 1),
-        DUMB_SCRYPT_DIFF=2**16,
+        DUMB_SCRYPT_DIFF=1,
         DUST_THRESHOLD=1e8,
     ),
 )

@@ -206,7 +206,7 @@ nets = dict(
         ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/address/',
         TX_EXPLORER_URL_PREFIX='http://nonexistent-explorer.kittehcoin.info/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-        DUMB_SCRYPT_DIFF=1,
+        DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=1e8,
     ),
     kittehcoin_testnet=math.Object(

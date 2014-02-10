@@ -1,1 +1,1 @@
-./run_p2pool.py --net kittehcoin --give-author 0
+./run_p2pool.py --net kittehcoin --give-author 0 --merged http://u:p@localhost:22567/ u p

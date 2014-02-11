@@ -211,9 +211,9 @@ nets = dict(
     ),
     kittehcoin_testnet=math.Object(
         P2P_PREFIX='cfcfcfcf'.decode('hex'),
-        P2P_PORT=44566,
+        P2P_PORT=22565,
         ADDRESS_VERSION=108,
-        RPC_PORT=44565,
+        RPC_PORT=22566,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'kittehcoinaddress' in (yield bitcoind.rpc_help()) and
             (yield bitcoind.rpc_getinfo())['testnet']
@@ -227,7 +227,7 @@ nets = dict(
         ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/address/',
         TX_EXPLORER_URL_PREFIX='http://nonexistent-litecoin-testnet-explorer/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256 - 1),
-        DUMB_SCRYPT_DIFF=1,
+        DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=1e8,
     ),
 )

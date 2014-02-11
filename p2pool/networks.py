@@ -144,21 +144,22 @@ nets = dict(
     ),
     kittehcoin_testnet=math.Object(
         PARENT=networks.nets['kittehcoin_testnet'],
-        SHARE_PERIOD=15, # seconds
-        CHAIN_LENGTH=24*60*60//10, # shares
-        REAL_CHAIN_LENGTH=24*60*60//10, # shares
-        TARGET_LOOKBEHIND=500, # shares
+        SHARE_PERIOD=4, # seconds
+        CHAIN_LENGTH=20*60//3, # shares
+        REAL_CHAIN_LENGTH=20*60//3, # shares
+        TARGET_LOOKBEHIND=300, # shares
         SPREAD=12, # blocks
-        IDENTIFIER='bec8b1d4d15a816a'.decode('hex'),
-        PREFIX='e69cab279d275bb9'.decode('hex'),
+        IDENTIFIER='bec8c1d4d15f816a'.decode('hex'),
+        PREFIX='e696ab279dc75bb9'.decode('hex'),
         P2P_PORT=9445,
-        MIN_TARGET=0,
-        MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        MIN_TARGET=2**256//50 - 1,
+        MAX_TARGET=2**256//50 - 1,
+        PERSIST=False,
         WORKER_PORT=9444,
-        BOOTSTRAP_ADDRS='stella.dnsalias.com 54.226.20.76'.split(' '),
+        BOOTSTRAP_ADDRS=''.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-tmeow',
         VERSION_CHECK=lambda v: True,
+        VERSION_WARNING=lambda v: 'Upgrade KittehCoin to >=0.8.6.2!' if v < 80602 else None
     ),
 )
 for net_name, net in nets.iteritems():

@@ -211,9 +211,9 @@ nets = dict(
     ),
     kittehcoin_testnet=math.Object(
         P2P_PREFIX='cfcfcfcf'.decode('hex'),
-        P2P_PORT=22565,
+        P2P_PORT=44566,
         ADDRESS_VERSION=108,
-        RPC_PORT=22566,
+        RPC_PORT=44565,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'kittehcoinaddress' in (yield bitcoind.rpc_help()) and
             (yield bitcoind.rpc_getinfo())['testnet']

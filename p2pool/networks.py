@@ -679,7 +679,8 @@ nets = dict(
         WORKER_PORT=9566,
         BOOTSTRAP_ADDRS='p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
-        VERSION_CHECK=lambda v: True,
+        VERSION_CHECK=lambda v: 80602 <= v,
+        VERSION_WARNING=lambda v: 'Upgrade KittehCoin to >= 0.8.6.2!' if v < 80602 else None,
     ),
     kittehcoin_testnet=math.Object(
         PARENT=networks.nets['kittehcoin_testnet'],
